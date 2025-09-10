@@ -1,4 +1,4 @@
-# Welcome to the API Docs
+# Geotrack Solutions public API documentation
 
 This site is built with **Docsify**. Use the sidebar to navigate.
 
