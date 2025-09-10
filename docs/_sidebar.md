@@ -1,0 +1,7 @@
+- [Home](/)
+- **API**
+  - [Overview](api/README.md)
+  - [OpenAPI Explorer](api/README.md#rest-api)
+- **Guides**
+  - [Getting started](guides/getting-started.md)
+  - [Authentication](guides/auth.md)
