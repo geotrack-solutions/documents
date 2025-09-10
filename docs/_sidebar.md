@@ -1,7 +1,16 @@
 - [Home](/)
 - **API**
-  - [Overview](api/README.md)
-  - [OpenAPI Explorer](api/README.md#rest-api)
+  - [Explorer](api/explorer.html)
+  - **clients**
+    - [Actualizar contrato](api/explorer.html#/clients/updateContract)
+    - [Batch de archivos de clientes](api/explorer.html#/clients/batchClients)
+    - [Crear cliente](api/explorer.html#/clients/createClient)
+    - [Obtener cliente por referencia](api/explorer.html#/clients/getClientByReference)
+    - [Obtener clientes](api/explorer.html#/clients/getClients)
+    - [Obtener clientes por contrato](api/explorer.html#/clients/getClientsByContract)
+    - [Obtener clientes por las categorias](api/explorer.html#/clients/getClientsByCategory)
+    - [Obtener contratos por las categorias](api/explorer.html#/clients/getContractsByCategory)
+    - [Obtener las categorias](api/explorer.html#/clients/getCategories)
 - **Guides**
   - [Getting started](guides/getting-started.md)
   - [Authentication](guides/auth.md)
