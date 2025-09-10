@@ -1,24 +1,168 @@
-openapi: 3.0.3
+openapi: 3.0.0
 info:
-  title: Sample API
-  version: "1.0.0"
-  description: |
-    Minimal OpenAPI spec to show Swagger-UI embedded in Docsify.
+  title: api-corporate-doc
+  version: 1.0.0
+  description: Para prueba unitarias y depuracion o adicion
 servers:
-  - url: https://api.example.com/v1
+  - url: '{{baseURL}}'
+  - url: localhost
 paths:
-  /ping:
+  /api_corporate/public/api/clients:
+    parameters: []
     get:
-      summary: Health check
-      operationId: ping
-      responses:
-        '200':
-          description: API is reachable
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: ok
+      summary: Obtener clientes
+      tags: &ref_0 []
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          description: >-
+            opcional, limita la cantidad de registros de clientes que retorna el
+            ws. Si no se envia se retornaran todos
+          example: '10'
+          schema:
+            type: integer
+        - name: api-token
+          in: header
+          required: false
+          example: >-
+            G1IzPA03i8dlIHX40l7S6dCiS66ULd2u3fwzTQZeiH9CwemJPAhTSidCPVJQBi8SJGPKo0LAKjyMvYRfCNbXYn5aTfv1S6WfHvzGJlzGguVl7oz0Ow0CzHBOvQJxJv1B0n7N50xThrjHvTzyynuMcdNpfbazvbSa9wUCk84cGkyK5UdEZURjCBi6KeM1ps0pwTKbUnVwVizWEbpjrRx2Il1vWtZ8zC0rpAXjfMx8cB5KSLqyOx76TMY0lK0UM5sschfAsR010qwlS2Wef7AGtNxoZFJLS9TAHhoamj8peL471706215788
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Crear cliente
+      tags: *ref_0
+      parameters:
+        - name: api-token
+          in: header
+          required: false
+          example: >-
+            kJ4jlH87eZSORwZRYZsDlKlP8aA4CrjfSgFSZbiVmmsXie8xiQNukbkja4pV40YLGtDejTA0CHpquj122RFUnBF2YOoPahC4he8R0PWgL3URWtdn8Ez7cmJkpIc2viidAdVivUGvgt4WfnyyZmOOcGzieSNPMKnpS9OO3cW6ut2kP2EFErSZVevSPynv83uSQlZeeN13NmralPSljLqxOsVT66bUwmJ2f1Cl9tjpFzIXll0W3GyaC7L5YaqEwu387keGOMGokBiimthZdgKqpmdbxtSLFW9vLZVbNGc6Q9Pp1635799285
+          schema:
+            type: string
+      responses: {}
+  /api_corporate/public/api/clients/contract:
+    parameters: []
+    get:
+      summary: Obtener clientes por contrato
+      tags: *ref_0
+      parameters:
+        - name: contract
+          in: query
+          required: false
+          description: contrato del cliente que se desea consultar
+          example: E5BD0A70
+          schema:
+            type: string
+        - name: api-token
+          in: header
+          required: false
+          example: >-
+            kJ4jlH87eZSORwZRYZsDlKlP8aA4CrjfSgFSZbiVmmsXie8xiQNukbkja4pV40YLGtDejTA0CHpquj122RFUnBF2YOoPahC4he8R0PWgL3URWtdn8Ez7cmJkpIc2viidAdVivUGvgt4WfnyyZmOOcGzieSNPMKnpS9OO3cW6ut2kP2EFErSZVevSPynv83uSQlZeeN13NmralPSljLqxOsVT66bUwmJ2f1Cl9tjpFzIXll0W3GyaC7L5YaqEwu387keGOMGokBiimthZdgKqpmdbxtSLFW9vLZVbNGc6Q9Pp1635799285
+          schema:
+            type: string
+      responses: {}
+  /api_corporate/public/api/clients/reference:
+    parameters: []
+    get:
+      summary: Obtener cliente por referencia
+      tags: *ref_0
+      parameters:
+        - name: reference
+          in: query
+          required: false
+          description: identificador de cliente (Cedula, Pasaporte) que se desea consultar
+          example: '2202190953'
+          schema:
+            type: integer
+        - name: api-token
+          in: header
+          required: false
+          example: >-
+            kJ4jlH87eZSORwZRYZsDlKlP8aA4CrjfSgFSZbiVmmsXie8xiQNukbkja4pV40YLGtDejTA0CHpquj122RFUnBF2YOoPahC4he8R0PWgL3URWtdn8Ez7cmJkpIc2viidAdVivUGvgt4WfnyyZmOOcGzieSNPMKnpS9OO3cW6ut2kP2EFErSZVevSPynv83uSQlZeeN13NmralPSljLqxOsVT66bUwmJ2f1Cl9tjpFzIXll0W3GyaC7L5YaqEwu387keGOMGokBiimthZdgKqpmdbxtSLFW9vLZVbNGc6Q9Pp1635799285
+          schema:
+            type: string
+      responses: {}
+  /api_corporate/public/api/clients/get-categories:
+    parameters: []
+    get:
+      summary: Obtener las categorias
+      tags: *ref_0
+      parameters:
+        - name: api-token
+          in: header
+          required: false
+          example: >-
+            kJ4jlH87eZSORwZRYZsDlKlP8aA4CrjfSgFSZbiVmmsXie8xiQNukbkja4pV40YLGtDejTA0CHpquj122RFUnBF2YOoPahC4he8R0PWgL3URWtdn8Ez7cmJkpIc2viidAdVivUGvgt4WfnyyZmOOcGzieSNPMKnpS9OO3cW6ut2kP2EFErSZVevSPynv83uSQlZeeN13NmralPSljLqxOsVT66bUwmJ2f1Cl9tjpFzIXll0W3GyaC7L5YaqEwu387keGOMGokBiimthZdgKqpmdbxtSLFW9vLZVbNGc6Q9Pp1635799285
+          schema:
+            type: string
+      responses: {}
+  /api_corporate/public/api/clients/get-clients-by-category:
+    parameters: []
+    get:
+      summary: Obtener clientes por las categorias
+      tags: *ref_0
+      parameters:
+        - name: category
+          in: query
+          required: false
+          example: '119'
+          schema:
+            type: integer
+        - name: api-token
+          in: header
+          required: false
+          example: >-
+            kJ4jlH87eZSORwZRYZsDlKlP8aA4CrjfSgFSZbiVmmsXie8xiQNukbkja4pV40YLGtDejTA0CHpquj122RFUnBF2YOoPahC4he8R0PWgL3URWtdn8Ez7cmJkpIc2viidAdVivUGvgt4WfnyyZmOOcGzieSNPMKnpS9OO3cW6ut2kP2EFErSZVevSPynv83uSQlZeeN13NmralPSljLqxOsVT66bUwmJ2f1Cl9tjpFzIXll0W3GyaC7L5YaqEwu387keGOMGokBiimthZdgKqpmdbxtSLFW9vLZVbNGc6Q9Pp1635799285
+          schema:
+            type: string
+      responses: {}
+  /api_corporate/public/api/clients/get-contracts-by-category:
+    parameters: []
+    get:
+      summary: Obtener contratos por las categorias
+      tags: *ref_0
+      parameters:
+        - name: category
+          in: query
+          required: false
+          example: '119'
+          schema:
+            type: integer
+        - name: api-token
+          in: header
+          required: false
+          example: >-
+            kJ4jlH87eZSORwZRYZsDlKlP8aA4CrjfSgFSZbiVmmsXie8xiQNukbkja4pV40YLGtDejTA0CHpquj122RFUnBF2YOoPahC4he8R0PWgL3URWtdn8Ez7cmJkpIc2viidAdVivUGvgt4WfnyyZmOOcGzieSNPMKnpS9OO3cW6ut2kP2EFErSZVevSPynv83uSQlZeeN13NmralPSljLqxOsVT66bUwmJ2f1Cl9tjpFzIXll0W3GyaC7L5YaqEwu387keGOMGokBiimthZdgKqpmdbxtSLFW9vLZVbNGc6Q9Pp1635799285
+          schema:
+            type: string
+      responses: {}
+  /api_corporate/public/api/clients/update:
+    parameters: []
+    post:
+      summary: Actualizar contrato
+      tags: *ref_0
+      parameters:
+        - name: api-token
+          in: header
+          required: false
+          example: >-
+            kJ4jlH87eZSORwZRYZsDlKlP8aA4CrjfSgFSZbiVmmsXie8xiQNukbkja4pV40YLGtDejTA0CHpquj122RFUnBF2YOoPahC4he8R0PWgL3URWtdn8Ez7cmJkpIc2viidAdVivUGvgt4WfnyyZmOOcGzieSNPMKnpS9OO3cW6ut2kP2EFErSZVevSPynv83uSQlZeeN13NmralPSljLqxOsVT66bUwmJ2f1Cl9tjpFzIXll0W3GyaC7L5YaqEwu387keGOMGokBiimthZdgKqpmdbxtSLFW9vLZVbNGc6Q9Pp1635799285
+          schema:
+            type: string
+      responses: {}
+  /api_corporate/public/api/clients/batch:
+    parameters: []
+    post:
+      summary: Batch de archivos de clientes
+      tags: *ref_0
+      parameters:
+        - name: api-token
+          in: header
+          required: false
+          example: >-
+            kJ4jlH87eZSORwZRYZsDlKlP8aA4CrjfSgFSZbiVmmsXie8xiQNukbkja4pV40YLGtDejTA0CHpquj122RFUnBF2YOoPahC4he8R0PWgL3URWtdn8Ez7cmJkpIc2viidAdVivUGvgt4WfnyyZmOOcGzieSNPMKnpS9OO3cW6ut2kP2EFErSZVevSPynv83uSQlZeeN13NmralPSljLqxOsVT66bUwmJ2f1Cl9tjpFzIXll0W3GyaC7L5YaqEwu387keGOMGokBiimthZdgKqpmdbxtSLFW9vLZVbNGc6Q9Pp1635799285
+          schema:
+            type: string
+      responses: {}
