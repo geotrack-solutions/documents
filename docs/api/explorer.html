@@ -2,102 +2,57 @@
 <html>
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>API Explorer</title>
   <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist/swagger-ui.css">
-  <style> body { margin: 0; } #swagger { height: 100vh; }</style>
+  <style> html,body{height:100%;margin:0} #swagger{height:100vh} </style>
 </head>
 <body>
   <div id="swagger"></div>
   <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
   <script>
-  // Read ?op=/tag/operationId from either Docsify's hash (#/page?op=...) or the real querystring
-  function readOpFromUrl() {
-    const hash = window.location.hash || '';
-    let query = '';
-    const qIndex = hash.indexOf('?');
-    if (qIndex >= 0) {
-      query = hash.slice(qIndex + 1);          // Docsify style
-    } else if (window.location.search.length > 1) {
-      query = window.location.search.slice(1);  // Direct load style
+    // Read ?op=/tag/operationId from Docsify's hash or real querystring
+    function readOpFromUrl(){
+      const hash = window.location.hash || '';
+      let query = '';
+      const qIndex = hash.indexOf('?');
+      if (qIndex >= 0) query = hash.slice(qIndex + 1);
+      else if (window.location.search.length > 1) query = window.location.search.slice(1);
+      const params = new URLSearchParams(query);
+      return params.get('op') || '';
     }
-    const params = new URLSearchParams(query);
-    return params.get('op') || '';
-  }
-
-  function normalizeOp(op) {
-    const parts = op.replace(/^\//,'').split('/');
-    return { tag: (parts[0] || ''), opId: (parts[1] || '') };
-  }
-
-  // Case-insensitive scroll to Swagger-UI operation block
-  function scrollToOperation(tag, opId, attempt = 0) {
-    const t = tag.toLowerCase();
-    const o = opId.toLowerCase();
-    const nodes = document.querySelectorAll('[id^="operations-"]'); // e.g., operations-clients-createClient
-    let target = null;
-    for (const el of nodes) {
-      const id = (el.id || '').toLowerCase();
-      // match exact pattern operations-{tag}-{operationId}
-      if (id === `operations-${t}-${o}`) { target = el; break; }
+    function normalizeOp(op){
+      const parts = op.replace(/^\//,'').split('/');
+      return { tag: parts[0] || '', opId: parts[1] || '' };
     }
-    if (!target) {
-      // fallback: contains check (helps with exotic ids)
-      for (const el of nodes) {
+    function scrollToOperation(tag, opId, attempt=0){
+      const t = tag.toLowerCase(), o = opId.toLowerCase();
+      const nodes = document.querySelectorAll('[id^="operations-"]');
+      for (const el of nodes){
         const id = (el.id || '').toLowerCase();
-        if (id.includes(`operations-${t}-`) && id.endsWith(`-${o}`)) { target = el; break; }
+        if (id === `operations-${t}-${o}` || (id.includes(`operations-${t}-`) && id.endsWith(`-${o}`))){
+          el.scrollIntoView({behavior:'smooth', block:'start'}); return true;
+        }
       }
+      if (attempt < 25) setTimeout(()=>scrollToOperation(tag, opId, attempt+1), 200);
+      return false;
     }
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      return true;
-    }
-    if (attempt < 25) { setTimeout(() => scrollToOperation(tag, opId, attempt + 1), 200); }
-    return false;
-  }
-
-  const ui = SwaggerUIBundle({
-    url: 'openapi.yaml',           // correct relative path from /api/explorer.html
-    dom_id: '#swagger',
-    deepLinking: false,            // avoid nested-hash conflict with Docsify
-    displayOperationId: true,
-    docExpansion: 'none',
-    filter: true
-  });
-
-  function handleRoute() {
-    const raw = readOpFromUrl();
-    if (!raw) return;
-    const { tag, opId } = normalizeOp(raw);
-    if (tag && opId) scrollToOperation(tag, opId);
-  }
-
-  // initial + on hash changes (Docsify navigation)
-  setTimeout(handleRoute, 300);
-  window.addEventListener('hashchange', handleRoute);
-</script>
-
-  <!--script>
-    window.ui = SwaggerUIBundle({
+    const ui = SwaggerUIBundle({
       url: 'openapi.yaml',
       dom_id: '#swagger',
-      deepLinking: true,
+      deepLinking: false,      // avoid nested-hash conflicts with Docsify
       displayOperationId: true,
       docExpansion: 'none',
       filter: true
     });
-</script-->
-  <!--script>
-  const op = new URLSearchParams(location.search).get('op'); // e.g. "/clients/getClients"
-  const ui = SwaggerUIBundle({ url: 'openapi.yaml', dom_id: '#swagger', deepLinking: false, docExpansion: 'none' });
-  // Wait a tick for UI to render, then scroll to the operation block by id.
-  ui.initOAuth && setTimeout(() => {
-    if (!op) return;
-    // Swagger gives each operation an id like "operations-{tag}-{operationId}"
-    const id = 'operations-' + op.replace(/^\//,'').replace('/', '-'); // crude map: "/tag/opId" -> "operations-tag-opId"
-    const el = document.getElementById(id);
-    if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  }, 600);
-</script-->
-
+    function handleRoute(){
+      const raw = readOpFromUrl();
+      if (!raw) return;
+      const { tag, opId } = normalizeOp(raw);
+      if (tag && opId) scrollToOperation(tag, opId);
+    }
+    setTimeout(handleRoute, 300);
+    window.addEventListener('hashchange', handleRoute);
+  </script>
 </body>
 </html>
