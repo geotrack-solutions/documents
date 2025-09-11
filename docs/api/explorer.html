@@ -38,7 +38,9 @@
       return false;
     }
     const ui = SwaggerUIBundle({
-      url: 'openapi.yaml',
+      url: './api/openapi.yaml',   // resolves correctly both inside Docsify and direct-load
+
+//      url: 'openapi.yaml',
       dom_id: '#swagger',
       deepLinking: false,      // avoid nested-hash conflicts with Docsify
       displayOperationId: true,
