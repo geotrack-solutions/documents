@@ -1,0 +1,50 @@
+
+ /* Cambiar color principal de Docsify */
+    :root { 
+        --theme-color: #0ea5e9; } /* Tailwind sky-500 */
+
+    
+        /* Todos los strings resaltados por highlight.js se pondrán verdes */
+    .hljs-string {
+      color: #2ECC71 !important;
+    }
+    
+/* 🎨 MODO OSCURO */
+body.dark-mode {
+  background-color: #090a0b;
+  color: #d4d4d4;
+  
+}
+
+/* Sidebar con gradiente blanco → negro */
+body.dark-mode .sidebar {
+  background: linear-gradient(to bottom, #090a0b, #030d18);
+  color: #d4d4d4;
+}
+
+/* Links */
+body.dark-mode a {
+  color: #0ea5e9 !important;
+}
+
+/* Código / bloques pre */
+body.dark-mode pre,
+body.dark-mode code {
+  background: #1e1e1e;
+  color: #f8f8f2;
+}
+
+/* Footer claro */
+body.dark-mode .custom-footer {
+  color: #f5efef;            /* texto claro */
+  background-color: #0b090a; /* fondo oscuro */
+}
+
+body.dark-mode .footer-separator {
+  border-color: #f8f8f2;     /* línea clara */
+}
+
+
+body {
+  transition: background-color 0.3s, color 0.3s;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Api Documentación</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/icono.svg">
+
+  <!-- Tema de Docsify -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+
+  <!-- Highlight.js CSS -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+
+  <!-- CSS personalizado -->
+  <link rel="stylesheet" href="styles/custom.css">
+  
+
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- Highlight.js JS -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <!-- Docsify configuración -->
+  <script>
+    window.$docsify = {
+      auto2top: true,
+      name: '',
+      logo: '',
+      repo: '',
+      coverpage: false,
+      executeScript: true,
+      loadNavbar: true,
+      // mergeNavbar: true,
+      loadSidebar: true,
+      // hideSidebar: true,
+      subMaxLevel: 4,
+      maxLevel: 4,
+      notFoundPage: '../pages/404.md',
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: 'Buscar...',
+        noData: 'No se encontró ningún resultado',
+        depth: 3
+      }
+    };
+  </script>
+
+  <!-- Docsify JS -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+
+  <!-- Plugins personalizados -->
+  <script src="scripts/custom.js"></script>
+</body>
+</html>
