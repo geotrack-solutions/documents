@@ -4,7 +4,7 @@
 
 - Consumiendo Servicios Web
 
-  - [Obtener Clientes](pages/obtenerCliente.md)
+  - [Obtener Clientes](./pages/obtenerCliente.md)
   - [Obtener Cliente por Contrato](pages/obtenerClienteContrato.md)
   - [Obtener Cliente por Cedula, Pasaporte o RUC](pages/obtenerClienteCedulaPasaporteRUC.md)
   - [Obtener Categorías](pages/ObtenerCategorias.md)
